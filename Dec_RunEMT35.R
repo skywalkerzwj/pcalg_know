@@ -36,7 +36,10 @@ file="data2.csv"
 dt<-Read(file,sep="")
 stdData<-Standardise(dt)
 
-
+suffStat<-list(C=cor(stdData), n=nrow(stdData))  
+print('Begin PC')
+pc.fit<-modifiedpcWeijia(suffStat, indepTest=gaussCItest, p=ncol(stdData), alpha=0.01,skel.method='stable',solve.confl=solve.confl)               
+print("PC finished")
 # resultNone<-CausaleffectsWeijia(miRNA,mRNA,stdData,0.01,num_miRNA)
 # 
 # resultPPI<-CausaleffectsWeijia(miRNA,mRNA,stdData,0.01,num_miRNA,fixedEdge=edgePPI)
